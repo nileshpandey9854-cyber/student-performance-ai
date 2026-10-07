@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Performance AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>🎓 Student Performance AI</h1>
+            <p>AI-Based Student Performance Prediction System</p>
+        </div>
+
+
+        <!-- Main Card -->
+        <div class="card">
+
+            <h2>Enter Student Details</h2>
+            <p class="description">
+                Enter the student's information below and let the AI model
+                predict the expected performance.
+            </p>
+
+
+            <!-- Prediction Form -->
+            <form action="/predict" method="POST">
+
+                <!-- Study Hours -->
+                <div class="form-group">
+                    <label for="study_hours">
+                        Study Hours per Day
+                    </label>
+
+                    <input
+                        type="number"
+                        id="study_hours"
+                        name="study_hours"
+                        min="0"
+                        max="24"
+                        step="0.1"
+                        placeholder="Example: 6"
+                        required
+                    >
+                </div>
+
+
+                <!-- Attendance -->
+                <div class="form-group">
+                    <label for="attendance">
+                        Attendance (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="attendance"
+                        name="attendance"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        placeholder="Example: 85"
+                        required
+                    >
+                </div>
+
+
+                <!-- Previous Marks -->
+                <div class="form-group">
+                    <label for="previous_marks">
+                        Previous Marks (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="previous_marks"
+                        name="previous_marks"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        placeholder="Example: 72"
+                        required
+                    >
+                </div>
+
+
+                <!-- Assignment Score -->
+                <div class="form-group">
+                    <label for="assignment_score">
+                        Assignment Score (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="assignment_score"
+                        name="assignment_score"
+                        min="0"
+                        max="100"
+                        step="0.1"
+                        placeholder="Example: 80"
+                        required
+                    >
+                </div>
+
+
+                <!-- Sleep Hours -->
+                <div class="form-group">
+                    <label for="sleep_hours">
+                        Sleep Hours per Day
+                    </label>
+
+                    <input
+                        type="number"
+                        id="sleep_hours"
+                        name="sleep_hours"
+                        min="0"
+                        max="24"
+                        step="0.1"
+                        placeholder="Example: 7"
+                        required
+                    >
+                </div>
+
+
+                <!-- Internet Hours -->
+                <div class="form-group">
+                    <label for="internet_hours">
+                        Internet Usage Hours per Day
+                    </label>
+
+                    <input
+                        type="number"
+                        id="internet_hours"
+                        name="internet_hours"
+                        min="0"
+                        max="24"
+                        step="0.1"
+                        placeholder="Example: 3"
+                        required
+                    </div>
+
+
+                <!-- Buttons -->
+                <div class="button-group">
+
+                    <button type="submit" class="predict-btn">
+                        🤖 Predict Performance
+                    </button>
+
+                    <button type="reset" class="reset-btn">
+                        ↻ Clear
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- Prediction Result -->
+            {% if prediction %}
+
+            <div class="result">
+
+                <h2>Prediction Result</h2>
+
+                {% if prediction == "Good" %}
+
+                    <div class="result-icon">🌟</div>
+
+                    <h3 class="good">
+                        Good Performance
+                    </h3>
+
+                    <p>
+                        The AI model predicts that the student is likely
+                        to have <strong>Good</strong> performance.
+                    </p>
+
+                {% elif prediction == "Average" %}
+
+                    <div class="result-icon">📊</div>
+
+                    <h3 class="average">
+                        Average Performance
+                    </h3>
+
+                    <p>
+                        The AI model predicts that the student is likely
+                        to have <strong>Average</strong> performance.
+                    </p>
+
+                {% else %}
+
+                    <div class="result-icon">📚</div>
+
+                    <h3 class="poor">
+                        Poor Performance
+                    </h3>
+
+                    <p>
+                        The AI model predicts that the student may need
+                        additional academic support.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                Student Performance AI | Machine Learning Project
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
+```
